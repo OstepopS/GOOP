@@ -13,21 +13,30 @@ namespace _Tennis
         private Random random = new Random();
         private int randomTimeMin;
         private int randomTimeSec;
-        private int MatchTimeHour;
-        private int MatchTimeMin;
-        private int MatchTimeSec;
+        private int matchTimeHour;
+        private int matchTimeMin;
+        private int matchTimeSec;
+        private int matchTimeTotal;
         private int randomNumber;
         private int playerPoints1;
         private int playerPoints2;
         private int setsWon1;
         private int setsWon2;
+        private string dateFrom;
+        private string dateTo;
+        private string timeFrom;
+        private string timeTo;
 
 
 
-        public TennisMatch( Tennisplayer tennisplayer1, Tennisplayer tennisplayer2)
+        public TennisMatch( Tennisplayer tennisplayer1, Tennisplayer tennisplayer2, string DF, string DT, string TF, string TT)
         {
             tennisPlayer1 = tennisplayer1;
             tennisPlayer2 = tennisplayer2;
+            dateFrom = DF;
+            dateTo = DT;
+            timeFrom = TF;
+            timeTo = TT;
         }
         
         public void Match()
@@ -97,31 +106,35 @@ namespace _Tennis
         {
             randomTimeMin = random.Next(1, 31);
             randomTimeSec = random.Next(1, 60);
-            MatchTimeMin = MatchTimeMin + randomTimeMin;
-            MatchTimeSec = MatchTimeSec + randomTimeSec;
+            matchTimeMin = matchTimeMin + randomTimeMin;
+            matchTimeSec = matchTimeSec + randomTimeSec;
 
-             if (MatchTimeSec >= 60)
+             if (matchTimeSec >= 60)
             {
                 
-                MatchTimeMin = MatchTimeMin + 1;
-                MatchTimeSec = MatchTimeSec - 60;
+                matchTimeMin = matchTimeMin + 1;
+                matchTimeSec = matchTimeSec - 60;
             }
-            if (MatchTimeMin >= 60)
+            if (matchTimeMin >= 60)
             {
-                MatchTimeHour = MatchTimeHour + 1;
-                MatchTimeMin = MatchTimeMin - 60;
+                matchTimeHour = matchTimeHour + 1;
+                matchTimeMin = matchTimeMin - 60;
             }
+            
            
+        }
+        public string MatchTimeTotal{
+            get{ return "" +  matchTimeHour + ":" + matchTimeMin + ":" + matchTimeSec;}
         }
         public override string ToString()
         {
             if (setsWon1 > setsWon2)
             {
-                return "\nThe Match ended with " + tennisPlayer1.FullNameForMatchWinner + " winning over " + tennisPlayer2.FullNameForMatchWinner + ". \nThe Score ended: " + setsWon1 + " - " + setsWon2 + ".\nThe total duration for the match is: " + "0" + MatchTimeHour + ":" + MatchTimeMin + ":" + MatchTimeSec + ".";
+                return "\nThe Match ended with " + tennisPlayer1.FullNameForMatchWinner + " winning over " + tennisPlayer2.FullNameForMatchWinner + ". \nThe Score ended: " + setsWon1 + " - " + setsWon2 + ".\nThe total duration for the match is: " + "0" + matchTimeHour + ":" + matchTimeMin + ":" + matchTimeSec + ".\n" + "The match was played from " + dateFrom + " " + timeFrom + " to " + dateTo + " " + timeTo + ".";
             }
             if (setsWon1 < setsWon2)
             {
-                return "\nThe Match ended with " + tennisPlayer2.FullNameForMatchWinner + " winning over " + tennisPlayer1.FullNameForMatchWinner + ". \nThe Score ended: " + setsWon2 + " - " + setsWon1 + ".\nThe total duration for the match is: " + "0" + MatchTimeHour + ":" + MatchTimeMin + ":" + MatchTimeSec + ".";
+                return "\nThe Match ended with " + tennisPlayer2.FullNameForMatchWinner + " winning over " + tennisPlayer1.FullNameForMatchWinner + ". \nThe Score ended: " + setsWon2 + " - " + setsWon1 + ".\nThe total duration for the match is: " + "0" + matchTimeHour + ":" + matchTimeMin + ":" + matchTimeSec + ".\n" + "The match was played from " + dateFrom + " " + timeFrom + " to " + dateTo + " " + timeTo + ".";
             }
             else
             {
