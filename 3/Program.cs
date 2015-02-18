@@ -13,8 +13,8 @@ namespace _Tennis
         {
 
             //TennisMatch1();
-            TennisMatch2();     
-            
+            //TennisMatch2();
+            Wimbledon8();
         }
         public static void TennisMatch1()
         {
@@ -37,6 +37,22 @@ namespace _Tennis
             RogerVSNadal.Match();
             Console.WriteLine(RogerVSNadal);
             //Console.WriteLine(RogerVSNadal.MatchTimeTotal);
+        }
+        public static void Wimbledon8()
+        {
+            var Peter = new Tennisplayer("Peter", "", "Woodcock", "1981-07-08", "Canada", "Male");
+            var Moot = new Tennisplayer("Moot", "", "Mootson", "1981-07-08", "USA", "Male");
+            var Henrik = new Tennisplayer("Henrik", "", "Prins", "1981-07-08", "Danmark", "Male");
+            var Frederik = new Tennisplayer("Frederik", "", "Kronprins", "1981-07-08", "Danmark", "Male");
+            var Joachim = new Tennisplayer("Joachim", "", "prins", "1981-07-08", "Danmark", "Male");
+            var Jacob = new Tennisplayer("Jacob", "", "Fedoriksen", "1981-07-08", "Germany", "Male");
+            var John = new Tennisplayer("John", "", "Hitler", "1981-07-08", "Germany", "Male");
+            var Anders = new Tennisplayer("Anders", "Behring", "Breivik", "1981-07-08", "Sweeden", "Male");
+            Tennisplayer[] array = {Peter, Moot,Henrik,Frederik};
+            DateTime dateFrom = new DateTime (2011,01,02);
+            DateTime dateTo = new DateTime(2011, 01, 05);
+            var Wimbledon = new Tournament(array, "Wimbledon", dateFrom, dateTo);
+            Wimbledon.Matching();
         }
     }
 }
