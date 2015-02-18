@@ -17,7 +17,7 @@ namespace _Tennis
         private Random random = new Random();
         private int randomNumber;
         private int gg = 2;
-
+        private int penis;
 
         public Tournament(Tennisplayer[] tennisplayer, string tournamentname, DateTime TDT, DateTime TDF)
         {
@@ -34,7 +34,7 @@ namespace _Tennis
                
                 tennisPlayer = tennisPlayer.Where(val => val != gg).ToArray();
             } while (tennisPlayer.Length > 1);
-
+            
 
         }
         public void Gender(int tp1, int tp2)
