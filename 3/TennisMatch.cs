@@ -38,6 +38,15 @@ namespace _Tennis
             timeFrom = TF;
             timeTo = TT;
         }
+        public TennisMatch(Tennisplayer tennisplayer1, Tennisplayer tennisplayer2)
+        {
+            tennisPlayer1 = tennisplayer1;
+            tennisPlayer2 = tennisplayer2;
+        }
+        public TennisMatch()
+        {
+
+        }
         
         public void Match()
             {
@@ -126,10 +135,26 @@ namespace _Tennis
         public string MatchTimeTotal{
             get{ return "" +  matchTimeHour + ":" + matchTimeMin + ":" + matchTimeSec;}
         }
+        public Tennisplayer TennisPlayerWinner
+        {
+            get
+            {
+                if (setsWon1 > setsWon2)
+                { 
+                    return tennisPlayer1; 
+                }
+
+                else 
+                {
+                    return tennisPlayer2; 
+                }
+            }
+        }
         public override string ToString()
         {
             if (setsWon1 > setsWon2)
             {
+
                 return "\nThe Match ended with " + tennisPlayer1.FullNameForMatchWinner + " winning over " + tennisPlayer2.FullNameForMatchWinner + ". \nThe Score ended: " + setsWon1 + " - " + setsWon2 + ".\nThe total duration for the match is: " + "0" + matchTimeHour + ":" + matchTimeMin + ":" + matchTimeSec + ".\n" + "The match was played from " + dateFrom + " " + timeFrom + " to " + dateTo + " " + timeTo + ".";
             }
             if (setsWon1 < setsWon2)

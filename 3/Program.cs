@@ -48,11 +48,14 @@ namespace _Tennis
             var Jacob = new Tennisplayer("Jacob", "", "Fedoriksen", "1981-07-08", "Germany", "Male");
             var John = new Tennisplayer("John", "", "Hitler", "1981-07-08", "Germany", "Male");
             var Anders = new Tennisplayer("Anders", "Behring", "Breivik", "1981-07-08", "Sweeden", "Male");
+            List<Tennisplayer> tennisplayer = new List<Tennisplayer> { };
+            tennisplayer.Add(Peter); tennisplayer.Add(Moot); tennisplayer.Add(Henrik); tennisplayer.Add(Frederik); tennisplayer.Add(Joachim); tennisplayer.Add(Jacob); tennisplayer.Add(John); tennisplayer.Add(Anders);
             Tennisplayer[] array = {Peter, Moot,Henrik,Frederik};
             DateTime dateFrom = new DateTime (2011,01,02);
             DateTime dateTo = new DateTime(2011, 01, 05);
-            var Wimbledon = new Tournament(array, "Wimbledon", dateFrom, dateTo);
-            Wimbledon.Matching();
+            var Wimbledon = new Tournament(tennisplayer, "Wimbledon", dateFrom, dateTo);
+            Wimbledon.Start();
+            
         }
     }
 }
