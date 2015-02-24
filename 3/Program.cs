@@ -16,7 +16,7 @@ namespace _Tennis
             //TennisMatch2();
             //Wimbledon8();
             var Wimbledon = new SuperTennisMatch();
-            Wimbledon.Players(8);
+            Wimbledon.Players(16);
            
         }
         public static void TennisMatch1()
