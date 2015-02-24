@@ -6,10 +6,11 @@ using System.Threading.Tasks;
 
 namespace _Tennis
 {
-    class TennisMatch
+    class TennisMatch : SuperTennisMatch
     {
-        private Tennisplayer tennisPlayer1;
-        private Tennisplayer tennisPlayer2;
+        protected Tennisplayer tennisPlayer1;
+        protected Tennisplayer tennisPlayer2;
+        
         private Random random = new Random();
         private int randomTimeMin;
         private int randomTimeSec;
@@ -28,28 +29,39 @@ namespace _Tennis
         private string timeTo;
 
 
-
-        public TennisMatch( Tennisplayer tennisplayer1, Tennisplayer tennisplayer2, string DF, string DT, string TF, string TT)
+        public TennisMatch()
         {
-            tennisPlayer1 = tennisplayer1;
-            tennisPlayer2 = tennisplayer2;
-            dateFrom = DF;
-            dateTo = DT;
-            timeFrom = TF;
-            timeTo = TT;
+
         }
+        public TennisMatch(List<Tennisplayer> tennis)
+        {
+            Console.WriteLine("gg");
+        }
+
         public TennisMatch(Tennisplayer tennisplayer1, Tennisplayer tennisplayer2)
         {
             tennisPlayer1 = tennisplayer1;
             tennisPlayer2 = tennisplayer2;
         }
-        public TennisMatch()
+        public TennisMatch(Tennisplayer tennisplayer1, Tennisplayer tennisplayer2, DateTime datetime)
         {
-
+            tennisPlayer1 = tennisplayer1;
+            tennisPlayer2 = tennisplayer2;
+            this.datetime = datetime;
         }
+        public TennisMatch(Tennisplayer tennisplayer1, Tennisplayer tennisplayer2, DateTime datetime, Referee referee)
+        {
+            tennisPlayer1 = tennisplayer1;
+            tennisPlayer2 = tennisplayer2;
+            this.datetime = datetime;
+            this.referee = referee;
+        }
+
+
         
         public void Match()
             {
+                Console.WriteLine("dfdf");
                 if (tennisPlayer1.Gender == tennisPlayer2.Gender && tennisPlayer1.Gender == "Male")
                     {
                         Console.WriteLine("Both players are male\n");
@@ -123,15 +135,20 @@ namespace _Tennis
                 
                 matchTimeMin = matchTimeMin + 1;
                 matchTimeSec = matchTimeSec - 60;
+
             }
             if (matchTimeMin >= 60)
             {
                 matchTimeHour = matchTimeHour + 1;
                 matchTimeMin = matchTimeMin - 60;
+
             }
-            
+            datetime.AddHours(matchTimeHour);
+            datetime.AddMinutes(matchTimeMin);
+            datetime.AddSeconds(matchTimeSec);
            
         }
+        
         public string MatchTimeTotal{
             get{ return "" +  matchTimeHour + ":" + matchTimeMin + ":" + matchTimeSec;}
         }
@@ -159,7 +176,7 @@ namespace _Tennis
             }
             if (setsWon1 < setsWon2)
             {
-                return "\nThe Match ended with " + tennisPlayer2.FullNameForMatchWinner + " winning over " + tennisPlayer1.FullNameForMatchWinner + ". \nThe Score ended: " + setsWon2 + " - " + setsWon1 + ".\nThe total duration for the match is: " + "0" + matchTimeHour + ":" + matchTimeMin + ":" + matchTimeSec + ".\n" + "The match was played from " + dateFrom + " " + timeFrom + " to " + dateTo + " " + timeTo + ".";
+                return "\nThe Match ended with " + tennisPlayer2.FullNameForMatchWinner + " winning over " + tennisPlayer1.FullNameForMatchWinner + ". \nThe Score ended: " + setsWon2 + " - " + setsWon1 + ".\nThe total duration for the match is: "/* + "0" + matchTimeHour + ":" + matchTimeMin + ":" + matchTimeSec + ".\n" */ + datetime +  "The match was played from " + dateFrom + " " + timeFrom + " to " + dateTo + " " + timeTo + ".";
             }
             else
             {

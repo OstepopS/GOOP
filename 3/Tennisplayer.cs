@@ -6,18 +6,12 @@ using System.Threading.Tasks;
 
 namespace _Tennis
 {
-    class Tennisplayer
+    class Tennisplayer : Person
     {
-        private string  firstName;   
-        private string  middleName;  
-        private string  lastName;    
-        private string  DOB;         
-        private string  nationality;
-        private string  gender;
-        private string  fullName;
 
 
-        public Tennisplayer(string fN, string mN, string lN, string dob, string nat, string gen)
+
+        public Tennisplayer(string fN, string mN, string lN, DateTime dob, string nat, string gen)
         {
             firstName = fN;
             middleName = mN;
