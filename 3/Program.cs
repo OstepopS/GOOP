@@ -15,8 +15,7 @@ namespace _Tennis
             //TennisMatch1();
             //TennisMatch2();
             //Wimbledon8();
-            var Wimbledon = new SuperTennisMatch();
-            Wimbledon.Players(16);
+            SuperTennisMatch();
            
         }
         public static void TennisMatch1()
@@ -33,6 +32,14 @@ namespace _Tennis
             
             Console.WriteLine(CaroVSSerena);
             
+        }
+        private static void SuperTennisMatch()
+        {
+            DateTime datetime = new DateTime(2015,02,25);
+            string tournamentName = "Wimbledon";
+            //Referee referee = new Referee()
+            SuperTennisMatch Wimbledon = new SuperTennisMatch(tournamentName, datetime);
+            Wimbledon.Players(8);
         }
 
         /*public static void TennisMatch2()

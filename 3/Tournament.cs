@@ -28,11 +28,16 @@ namespace _Tennis
             tournamentDateFrom = TDF;
             tournamentDateTo = TDT;
         }
+        public Tournament(List<Tennisplayer> tennisplayer, string tournamentname, DateTime TDF)
+        {
+            tennisPlayer = tennisplayer;
+            tournamentName = tournamentname;
+            tournamentDateFrom = TDF;
+        }
         public void Start()
         {
             do{
             Queue();
-            //Queue();
             } while (tennisPlayer.Count > 2);
         }
         public void Queue(){
@@ -40,8 +45,8 @@ namespace _Tennis
                 {
                     //første spiller
                     randomNumber = random.Next(0, tennisPlayer.Count);
-                    Console.WriteLine("" + randomNumber);
-                    var tennisPlayerToQueue = new List<Tennisplayer> { };
+                    //Console.WriteLine("" + randomNumber);
+                    //var tennisPlayerToQueue = new List<Tennisplayer> { };
                     tennisPlayerQueue.Add(tennisPlayer[randomNumber]);
                     tennisPlayer.RemoveAt(randomNumber);
                     //foreach (Tennisplayer str in tennisPlayerQueue)
@@ -50,11 +55,12 @@ namespace _Tennis
 
                     //anden spiller
                     randomNumber = random.Next(0, tennisPlayer.Count);
-                    Console.WriteLine("" + randomNumber);
+                    //Console.WriteLine("" + randomNumber);
                     tennisPlayerQueue.Add(tennisPlayer[randomNumber]);
                     tennisPlayer.RemoveAt(randomNumber);
                     //foreach (Tennisplayer str in tennisPlayerQueue)
                     //  Console.WriteLine(str);
+
                 } while (tennisPlayer.Count > 2);
                 Matching();
             
@@ -92,8 +98,8 @@ namespace _Tennis
                     tennisPlayer.Clear();
                 }
             } while (tennisPlayer.Count > 0);
-            foreach (Tennisplayer str in tennisPlayerQueue)
-                    Console.WriteLine(str);
+           /* foreach (Tennisplayer str in tennisPlayerQueue)
+                    Console.WriteLine(str);*/
             
             
             

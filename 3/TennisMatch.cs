@@ -33,10 +33,7 @@ namespace _Tennis
         {
 
         }
-        public TennisMatch(List<Tennisplayer> tennis)
-        {
-            Console.WriteLine("gg");
-        }
+
 
         public TennisMatch(Tennisplayer tennisplayer1, Tennisplayer tennisplayer2)
         {

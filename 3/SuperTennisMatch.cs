@@ -11,60 +11,39 @@ namespace _Tennis
         protected List<Tennisplayer> tennisplayer = new List<Tennisplayer> { };
         protected Referee referee;
         protected DateTime datetime;
-        
+        protected string tournamentName;
+
         public SuperTennisMatch()
         {
+
+
+        }
+        public SuperTennisMatch(string tournamentname, DateTime datetime)
+        {
+            this.datetime = datetime;
+            this.tournamentName = tournamentname;
 
         }
         public void Players(int numberOfPlayers)
         {
             DateTime birthday = new DateTime(2011, 01, 02);
-            var Peter = new Tennisplayer("Peter", "", "Woodcock", birthday, "Canada", "Male");
+            var Peter = new Tennisplayer("Peter", "ff", "Woodcock", birthday, "Canada", "Male");
             birthday = new DateTime(2010, 5, 4);
             var Moot = new Tennisplayer("Moot", "", "Mootson", birthday, "USA", "Male");
-            tennisplayer.Add(Peter); tennisplayer.Add(Moot);
-            if (numberOfPlayers == 2)
+
+            for (int i = 0; i <= numberOfPlayers; i++)
             {
-                var twoplayers = new TennisMatch(tennisplayer);
-                twoplayers.Match();
-            }
-            if (numberOfPlayers == 8)
-            {
-                EightPlayers();
-            }
-            if (numberOfPlayers == 16)
-            {
-                SixteenPlayers();
-            }
-            if (numberOfPlayers == 32)
-            {
-                ThirtyTwoPlayers();
-            }
-            if (numberOfPlayers == 64)
-            {
-                SixtyFourPlayers();
-            }
+                //hvordan med forskellige spillere?
+                tennisplayer.Add(Peter);                
+            }     
             GameSetAndMatch();
         }
-        private void EightPlayers()
-        {
+          
 
-        }
-        private void SixteenPlayers()
-        {
-
-        }
-        private void ThirtyTwoPlayers()
-        {
-
-        }
-        private void SixtyFourPlayers()
-        {
-
-        }
         private void GameSetAndMatch()
         {
-
+            Tournament twoplayers = new Tournament(tennisplayer, tournamentName, datetime);
+            twoplayers.Start();
         }
     }
 }
