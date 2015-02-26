@@ -61,22 +61,20 @@ namespace _Tennis
             this.referee = referee;
         }
 
-
-        
         public void Match()
+        {
+            Console.WriteLine("Referee er: " + referee);
+            if (tennisPlayer1.Gender == tennisPlayer2.Gender && tennisPlayer1.Gender == "Male")
             {
-                Console.WriteLine("dfdf");
-                if (tennisPlayer1.Gender == tennisPlayer2.Gender && tennisPlayer1.Gender == "Male")
-                    {
-                        Console.WriteLine("Both players are male\n");
-                        MaleMatch();
-                    }
-                if (tennisPlayer1.Gender == tennisPlayer2.Gender && tennisPlayer1.Gender == "Female")
-                    {
-                        Console.WriteLine("Both players are female\n");
-                        FemaleMatch();
-                    }
+                Console.WriteLine("Both players are male\n");
+                PointsAndSets(5);
             }
+            if (tennisPlayer1.Gender == tennisPlayer2.Gender && tennisPlayer1.Gender == "Female")
+            {
+                Console.WriteLine("Both players are female\n");
+                PointsAndSets(3);
+            }
+        }
 
         private void PointsAndSets(int numberofsets)
         {
@@ -85,48 +83,39 @@ namespace _Tennis
                 do
                 {
                     randomNumber = random.Next(1, 3);
-                    
                     if (randomNumber == 1)
-                        {
-                            playerPoints1++;
-                            //Console.WriteLine("Player 1 has " + playerPoints1 + " points.");
-                        }
+                    {
+                        playerPoints1++;
+                        //Console.WriteLine("Player 1 has " + playerPoints1 + " points.");
+                    }
                     if (randomNumber == 2)
-                        {
-                            playerPoints2++;
-                            //Console.WriteLine("Player 2 has " + playerPoints2 + " points.");
-                        }
-                }while (playerPoints1 < 6 && playerPoints2 < 6);
-                          
-            if (playerPoints1 == 6)
-            {
-                setsWon1++;
-                playerPoints1 = 0;
-                playerPoints2 = 0;
-                MatchTime();
-                Console.WriteLine("" + tennisPlayer1.FullNameForMatchWinner + " has won " + setsWon1 + " sets.");
-                Console.WriteLine("Set " + setsWon1 + " took: " + randomTimeMin + ":" + randomTimeSec + ".");
-            }
-            if (playerPoints2 == 6)
-            {
-                setsWon2++;
-                playerPoints1 = 0;
-                playerPoints2 = 0;
-                MatchTime();
-                Console.WriteLine("" + tennisPlayer2.FullNameForMatchWinner + " has won " + setsWon2 + " sets.");
-                Console.WriteLine("Set " + setsWon2 + " took: " + randomTimeMin + ":" + randomTimeSec + ".");
-            }
-            }while  (setsWon1 < numberofsets && setsWon2 < numberofsets);
+                    {
+                        playerPoints2++;
+                        //Console.WriteLine("Player 2 has " + playerPoints2 + " points.");
+                    }
+                } while (playerPoints1 < 6 && playerPoints2 < 6);
+
+                if (playerPoints1 == 6)
+                {
+                    setsWon1++;
+                    playerPoints1 = 0;
+                    playerPoints2 = 0;
+                    MatchTime();
+                    Console.WriteLine("" + tennisPlayer1.FullNameForMatchWinner + " has won " + setsWon1 + " sets.");
+                    Console.WriteLine("Set " + setsWon1 + " took: " + randomTimeMin + ":" + randomTimeSec + ".");
+                }
+                if (playerPoints2 == 6)
+                {
+                    setsWon2++;
+                    playerPoints1 = 0;
+                    playerPoints2 = 0;
+                    MatchTime();
+                    Console.WriteLine("" + tennisPlayer2.FullNameForMatchWinner + " has won " + setsWon2 + " sets.");
+                    Console.WriteLine("Set " + setsWon2 + " took: " + randomTimeMin + ":" + randomTimeSec + ".");
+                }
+            } while (setsWon1 < numberofsets && setsWon2 < numberofsets);
         }
 
-        private void MaleMatch()
-            {
-                PointsAndSets(5);
-            }
-        private void FemaleMatch()
-            {
-                PointsAndSets(3);    
-            }
         private void MatchTime()
         {
             randomTimeMin = random.Next(1, 31);
@@ -134,40 +123,37 @@ namespace _Tennis
             matchTimeMin = matchTimeMin + randomTimeMin;
             matchTimeSec = matchTimeSec + randomTimeSec;
 
-             if (matchTimeSec >= 60)
+            if (matchTimeSec >= 60)
             {
-                
                 matchTimeMin = matchTimeMin + 1;
                 matchTimeSec = matchTimeSec - 60;
-
             }
             if (matchTimeMin >= 60)
             {
                 matchTimeHour = matchTimeHour + 1;
                 matchTimeMin = matchTimeMin - 60;
-
             }
             datetime.AddHours(matchTimeHour);
             datetime.AddMinutes(matchTimeMin);
             datetime.AddSeconds(matchTimeSec);
-           
         }
-        
-        public string MatchTimeTotal{
-            get{ return "" +  matchTimeHour + ":" + matchTimeMin + ":" + matchTimeSec;}
+
+        public string MatchTimeTotal
+        {
+            get { return "" + matchTimeHour + ":" + matchTimeMin + ":" + matchTimeSec; }
         }
         public Tennisplayer TennisPlayerWinner
         {
             get
             {
                 if (setsWon1 > setsWon2)
-                { 
-                    return tennisPlayer1; 
+                {
+                    return tennisPlayer1;
                 }
 
-                else 
+                else
                 {
-                    return tennisPlayer2; 
+                    return tennisPlayer2;
                 }
             }
         }
@@ -180,15 +166,12 @@ namespace _Tennis
             }
             if (setsWon1 < setsWon2)
             {
-                return "\nThe Match ended with " + tennisPlayer2.FullNameForMatchWinner + " winning over " + tennisPlayer1.FullNameForMatchWinner + ". \nThe Score ended: " + setsWon2 + " - " + setsWon1 + ".\nThe total duration for the match is: "/* + "0" + matchTimeHour + ":" + matchTimeMin + ":" + matchTimeSec + ".\n" */ + datetime +  "The match was played from " + dateFrom + " " + timeFrom + " to " + dateTo + " " + timeTo + ".";
+                return "\nThe Match ended with " + tennisPlayer2.FullNameForMatchWinner + " winning over " + tennisPlayer1.FullNameForMatchWinner + ". \nThe Score ended: " + setsWon2 + " - " + setsWon1 + ".\nThe total duration for the match is: "/* + "0" + matchTimeHour + ":" + matchTimeMin + ":" + matchTimeSec + ".\n" */ + datetime + "The match was played from " + dateFrom + " " + timeFrom + " to " + dateTo + " " + timeTo + ".";
             }
             else
             {
                 return "The match was not played.";
             }
-            
         }
-            
     }
-
 }

@@ -8,18 +8,14 @@ namespace _Tennis
 {
     class Tournament : SuperTennisMatch
     {
-        
-        private List<Tennisplayer> tennisPlayer;
+        private int counter = 1;
         private List<Tennisplayer> tennisPlayerQueue = new List<Tennisplayer>();
         private List<TennisMatch> tennisMatch = new List<TennisMatch>();
-        private DateTime tournamentDateTo;
         private DateTime tournamentDateFrom;
         private DateTime matchTime = new DateTime(2008, 1, 1, 12, 30, 0);
         private List<Referee> referee = new List<Referee>();
         private Random random = new Random();
-        private string tournamentName;
         private int randomNumber;
-        
         private TennisMatch match;
         private Tennisplayer winningTennisPlayer;
         private int stadion;
@@ -29,54 +25,41 @@ namespace _Tennis
 
         }
 
-        public Tournament(List<Tennisplayer> tennisPlayer, string tournamentname, DateTime TDT, DateTime TDF)
-        {
-            this.tennisPlayer = tennisPlayer;
-            tournamentName = tournamentname;
-            tournamentDateFrom = TDF;
-            tournamentDateTo = TDT;
-        }
         public Tournament(List<Tennisplayer> tennisPlayer, string tournamentname, DateTime TDF, int stadions)
         {
             this.tennisPlayer = tennisPlayer;
             tournamentName = tournamentname;
             this.stadion = stadions;
             tournamentDateFrom = TDF;
+            for (int hest = 0; hest < stadions; hest++)
+            {
+                var referee1 = new Referee(new DateTime(1589, 12, 12), new DateTime(1420, 12, 11));
+                referee.Add(referee1);
+            }
         }
         public void Start()
         {
-            do{
-            Queue1();
+            do
+            {
+                QueueRandomPlayers();
             } while (tennisPlayer.Count > 2);
         }
-        public void Queue()
-        {
 
-        }
-        public void Queue1(){
-               do
-                {
-                    //første spiller
-                    randomNumber = random.Next(0, tennisPlayer.Count);
-                    Console.WriteLine("" + randomNumber);
-                    tennisPlayerQueue.Add(tennisPlayer[randomNumber]);
-                    tennisPlayer.RemoveAt(randomNumber);
-                    //foreach (Tennisplayer str in tennisPlayerQueue)
-                    //   Console.WriteLine(str); 
-                   //ingen grund til at sortere de sidste 2 da de alligevel kommer op med hinanden
-                } while (tennisPlayer.Count > 2);
-                Matching();
-            
-            
-
-        }
-        private int stadions()
+        public void QueueRandomPlayers()
         {
-            var i = tennisPlayer.Count / 2;
-            return i / stadion;
-            
+            do
+            {
+                //Random spiller der bliver tilføjet til tennisPlayerQueue og bliver fjernet fra tennisPlayer
+                randomNumber = random.Next(0, tennisPlayer.Count);
+                Console.WriteLine("" + randomNumber);
+                tennisPlayerQueue.Add(tennisPlayer[randomNumber]);
+                tennisPlayer.RemoveAt(randomNumber);
+                //ingen grund til at sortere de sidste 2 da de alligevel kommer op med hinanden
+            } while (tennisPlayer.Count > 2);
+            QueueMatches();
         }
-        private void Matching()
+
+        private void QueueMatches()
         {
             tennisPlayer.AddRange(tennisPlayerQueue);
             tennisPlayerQueue.Clear();
@@ -84,73 +67,43 @@ namespace _Tennis
             {
                 if (tennisPlayer.Count > 1)
                 {
-                   /* if (referee.Count == 0)
-                    {
-                        var referee1 = new Referee();
-                        referee.Add(referee1);
-                        Console.WriteLine("referee added");
-                    }*/
                     Console.WriteLine("Ny runde");
+                    //time of day bliver tilføjet til matchTime sammen med datoen der er blevet parset via constucteren.
+
                     matchTime = tournamentDateFrom.Date + matchTime.TimeOfDay;
-                    var matches = tennisPlayer.Count/2;
+                    var matches = tennisPlayer.Count / 2;
                     do
-                    {   
-                        match = new TennisMatch(tennisPlayer[0], tennisPlayer[1], referee[0], matchTime);
+                    {
+                        Console.WriteLine("Spillere tilbage " + tennisPlayer.Count);
+                        Console.WriteLine("Kampe tilbage " + matches);
+                        Console.WriteLine("kamp " + counter++);
+                        //alle matches der skal laves bliver tilføjet til listen tennisMatch sådan at de kan spilles.
+                        match = new TennisMatch(tennisPlayer[0], tennisPlayer[1], referee[random.Next(0, referee.Count)], matchTime);
+                        tennisMatch.Add(match);
+                        match.Match();
+                        winningTennisPlayer = match.TennisPlayerWinner;
+                        tennisPlayerQueue.Add(winningTennisPlayer);
+                        //tennisPlayerQueue.Add(winningTennisPlayer);
+                        //de 2 tennisspillere der er er tilføjet til tennisMatch bliver nu fjernet fra listen med tennisspillere
                         tennisPlayer.RemoveAt(1);
                         tennisPlayer.RemoveAt(0);
-                        tennisMatch.Add(match);
+                        //matches tælles nu en ned.
                         matches--;
-                    }while(matches/2 > 0);
-
-                        }
-                        
-                        
-                       // match.Match();
-                        //Console.WriteLine(match);
-                        //winningTennisPlayer = match.TennisPlayerWinner;
-                        Console.WriteLine(winningTennisPlayer);
-
-                        tennisPlayerQueue.Add(winningTennisPlayer);
-                 
-                    
-           
+                    } while (matches > 0);
+                }
                 if (tennisPlayer.Count == 0)
-                {                    
+                {
                     tennisPlayer.AddRange(tennisPlayerQueue);
-                    tennisPlayerQueue.Clear();                   
+                    tennisPlayerQueue.Clear();
                 }
                 if (tennisPlayer.Count == 1)
                 {
+                    winningTennisPlayer = tennisPlayer[0];
                     tennisPlayer.Clear();
-                    
                 }
             } while (tennisPlayer.Count > 0);
-            MatchWinner();
-           /* foreach (Tennisplayer str in tennisPlayerQueue)
-                    Console.WriteLine(str);*/
-            
-            
-            
+            Console.WriteLine("the winner is: " + winningTennisPlayer);
         }
-        private void MatchWinner()
-        {
-
-        }
-        public void Gender(int tp1, int tp2)
-            {
-                if (tennisPlayer[tp1].Gender == tennisPlayer[tp2].Gender && tennisPlayer[tp1].Gender == "Male")
-                    {
-                        Console.WriteLine("Both players are male\n");
-                        //MaleMatch();
-                    }
-                if (tennisPlayer[tp1].Gender == tennisPlayer[tp2].Gender && tennisPlayer[tp1].Gender == "Female")
-                    {
-                        Console.WriteLine("Both players are female\n");
-                        //FemaleMatch();
-                    }
-            }
-        }
-
-         
     }
+}
 

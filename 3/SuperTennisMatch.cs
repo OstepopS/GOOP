@@ -8,41 +8,32 @@ namespace _Tennis
 {
     class SuperTennisMatch
     {
-        protected List<Tennisplayer> tennisplayer = new List<Tennisplayer> { };
-        
+        protected List<Tennisplayer> tennisPlayer = new List<Tennisplayer> { };
+        private int stadion = 2;
+        private Random random = new Random();
         protected DateTime datetime;
         protected string tournamentName;
-
+        protected int numberOfPlayers;
         public SuperTennisMatch()
         {
 
-
         }
-        public SuperTennisMatch(string tournamentname, DateTime datetime)
+        public SuperTennisMatch(string tournamentname, DateTime datetime, int numberOfPlayers)
         {
             this.datetime = datetime;
             this.tournamentName = tournamentname;
+            this.numberOfPlayers = numberOfPlayers;
 
-        }
-        public void Players(int numberOfPlayers)
-        {
-            DateTime birthday = new DateTime(2011, 01, 02);
-            var Peter = new Tennisplayer("Peter", "ff", "Woodcock", birthday, "Canada", "Male");
-            birthday = new DateTime(2010, 5, 4);
-            var Moot = new Tennisplayer("Moot", "", "Mootson", birthday, "USA", "Male");
-
-            for (int i = 0; i <= numberOfPlayers; i++)
+            for (int i = 0; i < numberOfPlayers; i++)
             {
-                //hvordan med forskellige spillere?
-                tennisplayer.Add(Peter);            
-            }     
-            GameSetAndMatch();
+                //en Tennisplayer bliver genereraet
+                var tennismand = new Tennisplayer();
+                tennisPlayer.Add(tennismand);
+            }
         }
-          
-
-        private void GameSetAndMatch()
+        public void GameSetAndMatch()
         {
-            Tournament tournament = new Tournament(tennisplayer, tournamentName, datetime, 2);
+            Tournament tournament = new Tournament(tennisPlayer, tournamentName, datetime, stadion);
             tournament.Start();
         }
     }
