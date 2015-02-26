@@ -30,6 +30,10 @@ namespace _Tennis
             licenseAcquired = licenseacquired;
             licenseRenewed = licenserenewed;
         }
+        public Referee()
+        {
+
+        }
 
 }
 }

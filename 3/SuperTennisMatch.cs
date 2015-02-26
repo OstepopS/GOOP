@@ -9,7 +9,7 @@ namespace _Tennis
     class SuperTennisMatch
     {
         protected List<Tennisplayer> tennisplayer = new List<Tennisplayer> { };
-        protected Referee referee;
+        
         protected DateTime datetime;
         protected string tournamentName;
 
@@ -34,7 +34,7 @@ namespace _Tennis
             for (int i = 0; i <= numberOfPlayers; i++)
             {
                 //hvordan med forskellige spillere?
-                tennisplayer.Add(Peter);                
+                tennisplayer.Add(Peter);            
             }     
             GameSetAndMatch();
         }
@@ -42,8 +42,8 @@ namespace _Tennis
 
         private void GameSetAndMatch()
         {
-            Tournament twoplayers = new Tournament(tennisplayer, tournamentName, datetime);
-            twoplayers.Start();
+            Tournament tournament = new Tournament(tennisplayer, tournamentName, datetime, 2);
+            tournament.Start();
         }
     }
 }

@@ -6,12 +6,13 @@ using System.Threading.Tasks;
 
 namespace _Tennis
 {
-    class TennisMatch : SuperTennisMatch
+    class TennisMatch : Tournament
     {
         protected Tennisplayer tennisPlayer1;
         protected Tennisplayer tennisPlayer2;
-        
+        protected Referee referee;
         private Random random = new Random();
+        private DateTime matchTime;
         private int randomTimeMin;
         private int randomTimeSec;
         private int matchTimeHour;
@@ -33,7 +34,13 @@ namespace _Tennis
         {
 
         }
-
+        public TennisMatch(Tennisplayer tennisplayer1, Tennisplayer tennisplayer2, Referee referee, DateTime matchTime)
+        {
+            tennisPlayer1 = tennisplayer1;
+            tennisPlayer2 = tennisplayer2;
+            this.referee = referee;
+            this.matchTime = matchTime;
+        }
 
         public TennisMatch(Tennisplayer tennisplayer1, Tennisplayer tennisplayer2)
         {

@@ -35,10 +35,10 @@ namespace _Tennis
         }
         private static void SuperTennisMatch()
         {
-            DateTime datetime = new DateTime(2015,02,25);
+            DateTime tournamentdate = new DateTime(2015,02,25);
             string tournamentName = "Wimbledon";
             //Referee referee = new Referee()
-            SuperTennisMatch Wimbledon = new SuperTennisMatch(tournamentName, datetime);
+            SuperTennisMatch Wimbledon = new SuperTennisMatch(tournamentName, tournamentdate);
             Wimbledon.Players(8);
         }
 
