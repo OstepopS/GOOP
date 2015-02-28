@@ -80,7 +80,7 @@ namespace _Tennis
                         //alle matches der skal laves bliver tilføjet til listen tennisMatch sådan at de kan spilles.
                         match = new TennisMatch(tennisPlayer[0], tennisPlayer[1], referee[random.Next(0, referee.Count)], matchTime);
                         tennisMatch.Add(match);
-                        match.Match();
+                        match.Start();
                         winningTennisPlayer = match.TennisPlayerWinner;
                         tennisPlayerQueue.Add(winningTennisPlayer);
                         //tennisPlayerQueue.Add(winningTennisPlayer);

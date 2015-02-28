@@ -24,6 +24,9 @@ namespace _Tennis
         private int playerPoints2;
         private int setsWon1;
         private int setsWon2;
+        private int gameWon1;
+        private int gameWon2;
+        private int numberOfSets;
         private string dateFrom;
         private string dateTo;
         private string timeFrom;
@@ -61,61 +64,125 @@ namespace _Tennis
             this.referee = referee;
         }
 
-        public void Match()
+        public void Start()
         {
             Console.WriteLine("Referee er: " + referee);
             if (tennisPlayer1.Gender == tennisPlayer2.Gender && tennisPlayer1.Gender == "Male")
             {
                 Console.WriteLine("Both players are male\n");
-                PointsAndSets(5);
+                numberOfSets = 5;
+                Match();
             }
             if (tennisPlayer1.Gender == tennisPlayer2.Gender && tennisPlayer1.Gender == "Female")
             {
                 Console.WriteLine("Both players are female\n");
-                PointsAndSets(3);
+                numberOfSets = 3;
+                Match();
             }
         }
-
-        private void PointsAndSets(int numberofsets)
+        private void PointToPlayer()
         {
+
+            randomNumber = random.Next(1, 3);
+            if (randomNumber == 1)
+            {
+                playerPoints1++;
+            }
+            if (randomNumber == 2)
+            {
+                playerPoints2++;
+            }
+            //Console.WriteLine("The Score is " + playerPoints1 + " - " + playerPoints2);
+        }
+        private void Match()
+        {
+            GamesAndSets();
+            Sets();
+        }
+        private void GamesAndSets()
+        {
+
+            int numberOfGames = 6;
             do
             {
-                do
+                PointToPlayer();
+                if (playerPoints1 == 3 && playerPoints2 == 3)
                 {
-                    randomNumber = random.Next(1, 3);
-                    if (randomNumber == 1)
+                    //Deuce
+                    do
                     {
-                        playerPoints1++;
-                        //Console.WriteLine("Player 1 has " + playerPoints1 + " points.");
-                    }
-                    if (randomNumber == 2)
-                    {
-                        playerPoints2++;
-                        //Console.WriteLine("Player 2 has " + playerPoints2 + " points.");
-                    }
-                } while (playerPoints1 < 6 && playerPoints2 < 6);
+                        PointToPlayer();
+                    } while ((playerPoints1 == playerPoints2 + 2) || (playerPoints2 == playerPoints1 + 2));
+                }
+                if (playerPoints1 >= playerPoints2 - 2 && playerPoints1 >= 6)
+                {
+                    //player 1 vinder et game
+                    gameWon1++;
+                    playerPoints1 = 0;
+                    playerPoints2 = 0;
+                    MatchTime();
 
-                if (playerPoints1 == 6)
+                }
+                if (playerPoints2 >= playerPoints1 - 2 && playerPoints2 >= 6)
                 {
-                    setsWon1++;
+                    gameWon2++;
                     playerPoints1 = 0;
                     playerPoints2 = 0;
                     MatchTime();
-                    Console.WriteLine("" + tennisPlayer1.FullNameForMatchWinner + " has won " + setsWon1 + " sets.");
-                    Console.WriteLine("Set " + setsWon1 + " took: " + randomTimeMin + ":" + randomTimeSec + ".");
+
+                    //Console.WriteLine("Set " + setsWon2 + " took: " + randomTimeMin + ":" + randomTimeSec + ".");
                 }
-                if (playerPoints2 == 6)
-                {
-                    setsWon2++;
-                    playerPoints1 = 0;
-                    playerPoints2 = 0;
-                    MatchTime();
-                    Console.WriteLine("" + tennisPlayer2.FullNameForMatchWinner + " has won " + setsWon2 + " sets.");
-                    Console.WriteLine("Set " + setsWon2 + " took: " + randomTimeMin + ":" + randomTimeSec + ".");
-                }
-            } while (setsWon1 < numberofsets && setsWon2 < numberofsets);
+
+
+            } while (gameWon1 < numberOfGames && gameWon2 < numberOfGames);
+            Console.WriteLine("");
+            if (gameWon1 == 6)
+            {
+                setsWon1++;
+                gameWon1 = 0;
+                gameWon2 = 0;
+                playerPoints1 = 0;
+                playerPoints2 = 0;
+                Console.WriteLine("" + tennisPlayer1.FullNameForMatchWinner + "has won " + setsWon1 + " set.");
+            }
+            if (gameWon2 == 6)
+            {
+                setsWon2++;
+                gameWon1 = 0;
+                gameWon2 = 0;
+                playerPoints1 = 0;
+                playerPoints2 = 0;
+                Console.WriteLine("" + tennisPlayer2.FullNameForMatchWinner + "has won " + setsWon2 + " set.");
+            }
+
         }
+        private void Sets()
+        {
 
+            do
+            {//sets = min 5
+                // s
+                if ((setsWon1 <= numberOfSets && setsWon1 <= setsWon2 + 2) || (setsWon2 <= numberOfSets && setsWon2 <= setsWon1 + 2))
+                {
+                    //har ikke den fjerneste ide om hvad jeg skal her det er nok bar en operator der sejler
+                    numberOfSets++;
+                }
+                GamesAndSets();
+                
+            } while ((setsWon1 <= numberOfSets && setsWon1 <= setsWon2 + 2) || (setsWon2 <= numberOfSets && setsWon2 <= setsWon1 + 2));
+            Console.WriteLine("wat" + setsWon1 + setsWon2);
+            /*if (setsWon1 > setsWon2)
+            {
+                setsWon1++;
+                Console.WriteLine("" + tennisPlayer1.FullNameForMatchWinner + "has won " + setsWon1 + " set.");
+            }
+            if (setsWon2 > setsWon1)
+            {
+
+                Console.WriteLine("" + tennisPlayer2.FullNameForMatchWinner + "has won " + setsWon2 + " set.");
+            }*/
+
+        }
         private void MatchTime()
         {
             randomTimeMin = random.Next(1, 31);
