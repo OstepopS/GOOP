@@ -35,6 +35,9 @@ namespace _Tennis
         {
             Tournament tournament = new Tournament(tennisPlayer, tournamentName, datetime, stadion);
             tournament.Start();
+
+        }
+       
         }
     }
-}
+

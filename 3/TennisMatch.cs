@@ -24,6 +24,8 @@ namespace _Tennis
         private int playerPoints2;
         private int setsWon1;
         private int setsWon2;
+        public int Winner1 { get; set; }
+        public int Winner2 { get; set; }
         private int gameWon1;
         private int gameWon2;
         private int numberOfSets;
@@ -158,29 +160,23 @@ namespace _Tennis
         }
         private void Sets()
         {
-
             do
-            {//sets = min 5
-                // s
-                if ((setsWon1 <= numberOfSets && setsWon1 <= setsWon2 + 2) || (setsWon2 <= numberOfSets && setsWon2 <= setsWon1 + 2))
-                {
-                    //har ikke den fjerneste ide om hvad jeg skal her det er nok bar en operator der sejler
-                    numberOfSets++;
-                }
-                GamesAndSets();
-                
-            } while ((setsWon1 <= numberOfSets && setsWon1 <= setsWon2 + 2) || (setsWon2 <= numberOfSets && setsWon2 <= setsWon1 + 2));
-            Console.WriteLine("wat" + setsWon1 + setsWon2);
-            /*if (setsWon1 > setsWon2)
-            {
-                setsWon1++;
-                Console.WriteLine("" + tennisPlayer1.FullNameForMatchWinner + "has won " + setsWon1 + " set.");
-            }
-            if (setsWon2 > setsWon1)
             {
 
-                Console.WriteLine("" + tennisPlayer2.FullNameForMatchWinner + "has won " + setsWon2 + " set.");
-            }*/
+
+                GamesAndSets();
+
+                if ((setsWon1 >= setsWon2 + 2) && setsWon1 >= numberOfSets)
+                {
+                    Winner1 = 1;
+                }
+
+                if ((setsWon2 >= setsWon1 + 2 && setsWon2 >= numberOfSets))
+                {
+                    Winner2 = 1;
+                }
+            } while (Winner1 == 0 && Winner2 == 0);
+            Console.WriteLine("wat" + setsWon1 + setsWon2);
 
         }
         private void MatchTime()
@@ -226,12 +222,12 @@ namespace _Tennis
         }
         public override string ToString()
         {
-            if (setsWon1 > setsWon2)
+            if (Winner1 == 1)
             {
 
-                return "\nThe Match ended with " + tennisPlayer1.FullNameForMatchWinner + " winning over " + tennisPlayer2.FullNameForMatchWinner + ". \nThe Score ended: " + setsWon1 + " - " + setsWon2 + ".\nThe total duration for the match is: " + "0" + matchTimeHour + ":" + matchTimeMin + ":" + matchTimeSec + ".\n" + "The match was played from " + dateFrom + " " + timeFrom + " to " + dateTo + " " + timeTo + ".";
+                return "\nThe Match ended with " + tennisPlayer1.FullNameForMatchWinner + " winning over " + tennisPlayer2.FullNameForMatchWinner + ". \nThe Score ended: " + setsWon1 + " - " + setsWon2 + ".\nThe total duration for the match is: "/* + "0" + matchTimeHour + ":" + matchTimeMin + ":" + matchTimeSec + ".\n"*/ + datetime +  "The match was played from " + dateFrom + " " + timeFrom + " to " + dateTo + " " + timeTo + ".";
             }
-            if (setsWon1 < setsWon2)
+            if (Winner2 == 1)
             {
                 return "\nThe Match ended with " + tennisPlayer2.FullNameForMatchWinner + " winning over " + tennisPlayer1.FullNameForMatchWinner + ". \nThe Score ended: " + setsWon2 + " - " + setsWon1 + ".\nThe total duration for the match is: "/* + "0" + matchTimeHour + ":" + matchTimeMin + ":" + matchTimeSec + ".\n" */ + datetime + "The match was played from " + dateFrom + " " + timeFrom + " to " + dateTo + " " + timeTo + ".";
             }
@@ -239,6 +235,7 @@ namespace _Tennis
             {
                 return "The match was not played.";
             }
+
         }
     }
 }

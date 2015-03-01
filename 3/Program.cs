@@ -20,7 +20,7 @@ namespace _Tennis
             string tournamentName = "Wimbledon";
             //Referee referee = new Referee()
             SuperTennisMatch Wimbledon = new SuperTennisMatch(tournamentName, tournamentdate,2);
-            Wimbledon.GameSetAndMatch();
+            Wimbledon.GameSetAndMatch();           
         }
     }
 }
