@@ -13,15 +13,17 @@ namespace _Tennis
         private Random random = new Random();
         protected DateTime datetime;
         protected string tournamentName;
+        protected string gameFormat;
         protected int numberOfPlayers;
         public SuperTennisMatch()
         {
 
         }
-        public SuperTennisMatch(string tournamentname, DateTime datetime, int numberOfPlayers)
+        public SuperTennisMatch(string tournamentname, DateTime datetime, string gameFormat, int numberOfPlayers)
         {
             this.datetime = datetime;
             this.tournamentName = tournamentname;
+            this.gameFormat = gameFormat;
             this.numberOfPlayers = numberOfPlayers;
 
             for (int i = 0; i < numberOfPlayers; i++)
@@ -31,11 +33,21 @@ namespace _Tennis
                 tennisPlayer.Add(tennismand);
             }
         }
+        public bool IsPowerOfTwo(int x)
+        {
+            return (x != 0) && (x & (x - 1)) == 0;
+        }
         public void GameSetAndMatch()
         {
-            Tournament tournament = new Tournament(tennisPlayer, tournamentName, datetime, stadion);
+            if (IsPowerOfTwo(numberOfPlayers) == false)
+            {
+                Console.WriteLine("The tennis tournament can not be played with that amount of people");
+            }
+            if(IsPowerOfTwo(numberOfPlayers) == true)
+            {
+            Tournament tournament = new Tournament(tennisPlayer, tournamentName, stadion);
             tournament.Start();
-
+            }
         }
        
         }

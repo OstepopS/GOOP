@@ -10,7 +10,7 @@ namespace _Tennis
     {
         private DateTime licenseAcquired;
         private DateTime licenseRenewed;
-        private bool GM;
+        public bool GM { get; set; }
 
         public Referee(DateTime licAQ, DateTime licRe)
             : base()

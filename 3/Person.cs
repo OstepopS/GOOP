@@ -14,12 +14,16 @@ namespace _Tennis
         protected string nationality;
         protected string gender;
         protected DateTime dateOfBirth;
-        protected List<string> firstNameList = new List<string> { "Henning", "Flemming", "Bo", "Ib", "John", "pind", "hest", "lars" };
-        protected List<string> middleNameList = new List<string> { "Henning", "Flemming", "KimLarsen", "Hitler", "John", "BQsen", "Sral", "kurd" };
-        protected List<string> lastNameList = new List<string> { "Johnson", "Berdiin", "Boris", "Bqqsen", "TheG", "Underskov", "Lund", "Otte" };
-        protected List<string> nationalityList = new List<string> { "Denmark", "Canada", "Sweden", "Murrica" };
+        protected List<string> firstNameList = new List<string> { "Gary", "John", "Dean", "Wayne", "Juan", "Fritz", "Ronald", "Mikhail", "Earle", "Patrick", "William", "Larry", "Paul", "Randall", "Jeffrey", "Randy", "Robert", "Charles", "Robert" };
+        protected List<string> middleNameList = new List<string> { "Wayne", "Vallejo", "John", "Steven", "Lee", "Ray", "Joseph", "", "", "", "", "", "", "" };
+        protected List<string> lastNameList = new List<string> { "Ridgway", "Gacy", "Corll", "Williams", "Corona", "Haarmann", "Dominique", "Popkov", "Nelson", "Kearney", "Bohnin", "Eyler", "Knowles", "Woodfield", "Dahmer", "Kraft", "Yates", "Hatcher", "Hansen" };
+        protected List<string> nationalityList = new List<string> { "Denmark", "Canada", "Sweden", "USA", "Russia", "China", "Norway", "Germany", "Great Britain", "France", "Spain", "Italy", "Ukraine", "Romania", "Hungary", "Korea", "Egypt", "Saudi Arabia", "Mexico", "Brazil", "Argentina", "Chile", "Colombia", "Somalia", "Netherlands", "Poland", "Finland", "Greenland", "Japan", "South Africa" };
+
         protected List<string> genderList = new List<string> {/*"Female",*/"Male" };
-        protected List<DateTime> dateOfBirthList = new List<DateTime> { new DateTime(1977, 1, 2), new DateTime(1945, 1, 2) };
+
+        protected List<DateTime> dateOfBirthList = new List<DateTime> { new DateTime(1977, 1, 2), new DateTime(1945, 1, 2), new DateTime(1946, 2, 3), new DateTime(1985, 5, 2), new DateTime(1955, 4, 7), new DateTime(1999, 1, 1), new DateTime(1988, 5, 8), new DateTime(1978, 3, 9), new DateTime(1965, 12, 12), new DateTime(1969, 11, 11), new DateTime(1981, 5, 10), new DateTime(1973, 6, 9) };
+
+
         protected string fullName;
         private Random random = new Random(Guid.NewGuid().GetHashCode());
 

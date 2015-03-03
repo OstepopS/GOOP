@@ -15,11 +15,13 @@ namespace _Tennis
             if(isPlayed == false)
             {
                 isPlayed = true;
-                return true;
+                Console.WriteLine("sæbe"); 
+             return isPlayed; 
             }
             else
             {
-                return false;
+                Console.WriteLine("fukmeinass");
+                return isPlayed;
                 // returner  at den er optaget
             }
         }

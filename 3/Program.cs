@@ -8,19 +8,20 @@ namespace _Tennis
 {
     class Program
     {
-        
+
         public static void Main(string[] args)
         {
-            SuperTennisMatch();           
+            SuperTennisMatch();
         }
 
         private static void SuperTennisMatch()
         {
-            DateTime tournamentdate = new DateTime(2015,02,25);
+            DateTime tournamentdate = new DateTime(1999, 12, 12);
             string tournamentName = "Wimbledon";
+            string gameFormat = "Single";
             //Referee referee = new Referee()
-            SuperTennisMatch Wimbledon = new SuperTennisMatch(tournamentName, tournamentdate,2);
-            Wimbledon.GameSetAndMatch();           
+            SuperTennisMatch Wimbledon = new SuperTennisMatch(tournamentName, tournamentdate, gameFormat, 2);
+            Wimbledon.GameSetAndMatch();
         }
     }
 }
