@@ -19,10 +19,10 @@ namespace _Tennis
         {
             DateTime tournamentdate = new DateTime(1999, 12, 12);
             string tournamentName = "Wimbledon";
-            string gameFormat = "Mix";
+            string gameFormat = "Double";
             string gender1 = "Male";
             //Referee referee = new Referee()
-            SuperTennisMatch Wimbledon = new SuperTennisMatch(tournamentName, tournamentdate, gameFormat, gender1, 16);
+            SuperTennisMatch Wimbledon = new SuperTennisMatch(tournamentName, tournamentdate, gameFormat, gender1, 4);
             Wimbledon.GameSetAndMatch();
             
         }

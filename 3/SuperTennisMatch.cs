@@ -9,11 +9,11 @@ namespace _Tennis
     class SuperTennisMatch
     {
         protected List<Tennisplayer> tennisPlayer = new List<Tennisplayer> { };
-        private int stadion = 2;
-        private Random random = new Random();
+        protected static int stadion = 2;
+        protected Random random = new Random();
         protected DateTime datetime;
         protected string tournamentName;
-        protected string gameFormat;
+        protected static string gameFormat;
         public string gender { get; set; }
 
         protected int numberOfPlayers;
@@ -21,18 +21,18 @@ namespace _Tennis
         {
 
         }
-        public SuperTennisMatch(string tournamentname, DateTime datetime, string gameFormat, string gender, int numberOfPlayers)
+        public SuperTennisMatch(string tournamentname, DateTime datetime, string gameFormat1, string gender, int numberOfPlayers)
         {
             this.datetime = datetime;
             this.tournamentName = tournamentname;
-            this.gameFormat = gameFormat;
+            gameFormat = gameFormat1;
             this.numberOfPlayers = numberOfPlayers;
             this.gender = gender;
 
             for (int i = 0; i < numberOfPlayers; i++)
             {
                 //en Tennisplayer bliver genereraet
-                var tennismand = new Tennisplayer();
+                var tennismand = new Tennisplayer(this.gender);
                 tennisPlayer.Add(tennismand);
             }
         }
@@ -48,8 +48,8 @@ namespace _Tennis
             }
             if (IsPowerOfTwo(numberOfPlayers) == true)
             {
-                Tournament tournament = new Tournament(tennisPlayer, tournamentName, gameFormat, stadion);
-                Console.WriteLine("df" + gameFormat);
+                Tournament tournament = new Tournament(tennisPlayer, tournamentName);
+                
                 tournament.Start();
             }
         }

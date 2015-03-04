@@ -13,7 +13,7 @@ namespace _Tennis
         public bool GM { get; set; }
 
         public Referee(DateTime licAQ, DateTime licRe)
-            : base()
+            : base("Male")
         {
             licenseAcquired = licAQ;
             licenseRenewed = licRe;

@@ -9,17 +9,15 @@ namespace _Tennis
     class Tennisplayer : Person
     {
 
-        public Tennisplayer(string gender)
-        {
-            this.gender = gender;
-            Console.WriteLine("sssssssssssssssssssss" + gender);
-        }
+        //public Tennisplayer(string gender)
+        //{
+        //    this.gender = gender;
+        //    Console.WriteLine("sssssssssssssssssssss" + gender);
+        //}
 
-        public Tennisplayer(): base()
+        public Tennisplayer(string gender): base(gender)
         { 
-            Console.WriteLine("sssssssssssssssssssss" + gender);
-            gender = "Male";
-            Console.WriteLine("sssssssssssssssssssss" + gender);
+
         }
 
         public Tennisplayer(string fN, string mN, string lN, DateTime dob, string nat, string gen)

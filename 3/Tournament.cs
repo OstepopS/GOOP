@@ -11,14 +11,13 @@ namespace _Tennis
         private int counter = 1;
         private List<Tennisplayer> tennisPlayerQueue = new List<Tennisplayer>();
         private List<TennisMatch> tennisMatch = new List<TennisMatch>();
-        private DateTime matchTime = new DateTime(2023, 11, 3, 15, 34, 23);
+        protected DateTime matchTime;
         private List<Referee> referee = new List<Referee>();
-        private Random random = new Random();
+       
         private int randomNumber;
         private TennisMatch match;
         private List<Tennisplayer> winningTennisPlayer = new List<Tennisplayer>();
-        private int stadion;
-        protected int singleOrDouble;
+        protected static int singleOrDouble;
 
 
         public Tournament()
@@ -26,12 +25,12 @@ namespace _Tennis
 
         }
 
-        public Tournament(List<Tennisplayer> tennisPlayer, string tournamentname, string gameFormat, int stadions)
+        public Tournament(List<Tennisplayer> tennisPlayer, string tournamentname)
         {
             this.tennisPlayer = tennisPlayer;
             tournamentName = tournamentname;
-            this.gameFormat = gameFormat;
-            this.stadion = stadions;
+            //this.gameFormat = gameFormat;
+
             //Laver en game master og fjerner ham fra listen af referees. Der er lige så mange referees som der er stations+1 fordi der skal være en game master Kappa
             for (int i = 0; i < stadion + 1; i++)
             {
@@ -46,13 +45,13 @@ namespace _Tennis
         }
         public virtual void Start()
         {
-            Console.WriteLine("sdsd" + gameFormat);
+            
             if (gameFormat == "Single")//.Equals("Single") == true )//.Equals("Single") == true)// == (string) "Single")
             {
 
                 do
                 {   
-                    Console.WriteLine("Single");
+                    
                     singleOrDouble = 2;
                     QueueRandomPlayers();
                 } while (tennisPlayer.Count > 2);
@@ -63,7 +62,7 @@ namespace _Tennis
 
                 do
                 {
-                    Console.WriteLine("Doublasdasde");
+                    
                     singleOrDouble = 4;
                     QueueRandomPlayers();
                 } while (tennisPlayer.Count > 4);
@@ -73,10 +72,7 @@ namespace _Tennis
                 Console.WriteLine("Mix Double");
                 singleOrDouble = 4;
             }
-            else
-            {
-                Console.WriteLine("Er du helt væk?");
-            }
+
         }
 
         public void QueueRandomPlayers()
@@ -104,7 +100,7 @@ namespace _Tennis
                 {
                     Console.WriteLine("Ny runde");
                     //time of day bliver tilføjet til matchTime sammen med datoen der er blevet parset via constucteren.
-
+                     matchTime = new DateTime(2023, 11, 3, 15, 00, 00);
                     datetime = datetime.Date + matchTime.TimeOfDay;
                     var matches = tennisPlayer.Count / singleOrDouble;
                     do
@@ -115,7 +111,7 @@ namespace _Tennis
                         //alle matches der skal laves bliver tilføjet til listen tennisMatch sådan at de kan spilles.
                         if (singleOrDouble == 2)
                         {
-                        match = new TennisMatch(tennisPlayer[0], tennisPlayer[1], referee[random.Next(0, referee.Count)], datetime,gameFormat);
+                        match = new TennisMatch(tennisPlayer[0], tennisPlayer[1], referee[random.Next(0, referee.Count)], datetime);
                         tennisMatch.Add(match);
                         match.Start();
                         //Console.WriteLine("Match" + match.ToString());
@@ -139,7 +135,7 @@ namespace _Tennis
                         }
                         else
                         {
-                            match = new TennisMatch(tennisPlayer[0], tennisPlayer[1],tennisPlayer[2],tennisPlayer[3], referee[random.Next(0, referee.Count)], datetime,gameFormat);
+                            match = new TennisMatch(tennisPlayer[0], tennisPlayer[1],tennisPlayer[2],tennisPlayer[3], referee[random.Next(0, referee.Count)], datetime);
                             tennisMatch.Add(match);
                             match.Start();
                             Console.WriteLine("Match" + match.ToString());

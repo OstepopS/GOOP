@@ -14,8 +14,7 @@ namespace _Tennis
         public Tennisplayer tennisPlayer4 { get; set; }
 
         protected Referee referee;
-        private Random random = new Random();
-        private DateTime matchTime = new DateTime();
+
         private int randomTimeMin;
         private int randomTimeSec;
         private int matchTimeHour;
@@ -43,15 +42,15 @@ namespace _Tennis
         {
 
         }
-        public TennisMatch(Tennisplayer tennisplayer1, Tennisplayer tennisplayer2, Referee referee, DateTime matchTime,string gameFormat)
+        public TennisMatch(Tennisplayer tennisplayer1, Tennisplayer tennisplayer2, Referee referee, DateTime matchTime)
         {
             tennisPlayer1 = tennisplayer1;
             tennisPlayer2 = tennisplayer2;
             this.referee = referee;
             this.matchTime1 = matchTime;
-            this.gameFormat = gameFormat;
+
         }
-        public TennisMatch(Tennisplayer tennisplayer1, Tennisplayer tennisplayer2, Tennisplayer tennisplayer3, Tennisplayer tennisplayer4, Referee referee, DateTime matchTime,string gameFormat)
+        public TennisMatch(Tennisplayer tennisplayer1, Tennisplayer tennisplayer2, Tennisplayer tennisplayer3, Tennisplayer tennisplayer4, Referee referee, DateTime matchTime)
         {
             tennisPlayer1 = tennisplayer1;
             tennisPlayer2 = tennisplayer2;
@@ -59,7 +58,7 @@ namespace _Tennis
             tennisPlayer4 = tennisplayer4;
             this.referee = referee;
             this.matchTime1 = matchTime;
-            this.gameFormat = gameFormat;
+
         }
 
         public TennisMatch(Tennisplayer tennisplayer1, Tennisplayer tennisplayer2)
@@ -140,7 +139,7 @@ namespace _Tennis
                     playerPoints2 = 0;
                     MatchTime();
 
-                    //Console.WriteLine("Set " + setsWon1 + " took: " + randomTimeMin + ":" + randomTimeSec + ".");
+                    Console.WriteLine("Set " + setsWon1 + " took: " + randomTimeMin + ":" + randomTimeSec + ".");
                 }
                 if (playerPoints2 >= playerPoints1 - 2 && playerPoints2 >= 6)
                 {
@@ -149,7 +148,7 @@ namespace _Tennis
                     playerPoints2 = 0;
                     MatchTime();
 
-                    //Console.WriteLine("Set " + setsWon2 + " took: " + randomTimeMin + ":" + randomTimeSec + ".");
+                    Console.WriteLine("Set " + setsWon2 + " took: " + randomTimeMin + ":" + randomTimeSec + ".");
                 }
 
 
@@ -214,11 +213,11 @@ namespace _Tennis
                 matchTimeHour = matchTimeHour + 1;
                 matchTimeMin = matchTimeMin - 60;
             }
-            matchTime.AddHours(11);
+            matchTime.AddHours(matchTimeHour);
             matchTime.AddMinutes(matchTimeMin);
             matchTime.AddSeconds(matchTimeSec);
+           Console.WriteLine("gg" + matchTime);
 
-            //Console.WriteLine("dfdsfsadfadfadsfadfadfadfadfasdfasdfasdfasdf" + matchTime);
         }
 
         public string MatchTimeTotal
@@ -257,25 +256,8 @@ namespace _Tennis
                  }
              }
          }*/
-        public void gg()
-        {
-            Console.WriteLine("" + singleOrDouble);
-            if (gameFormat == "Single")
-            {
-                singleOrDouble = 2;
-            }
-            if (gameFormat == "Double")
-            {
-                singleOrDouble = 4;
-            }
-            else
-            {
-                Console.WriteLine("du er helt væk stadig");
-            }
-        }
         public string ToString()
         {
-            gg();
             Console.WriteLine("" + singleOrDouble);
             if (singleOrDouble == 2)
             {
@@ -285,7 +267,7 @@ namespace _Tennis
                 }
                 if (Winner2 == 1)
                 {
-                    return "\nThe Match ended with " + tennisPlayer2.FullNameForMatchWinner + " winning over " + tennisPlayer1.FullNameForMatchWinner + ". \nThe Score ended: " + setsWon2 + " - " + setsWon1 + ".\nThe total duration for the match is: "/* + "0" + matchTimeHour + ":" + matchTimeMin + ":" + matchTimeSec + ".\n" */ + "{0:dddd}" + matchTime + "The match was played from " + datetime + " " + timeFrom + " to " + dateTo + " " + timeTo + ".";
+                    return "\nThe Match ended with " + tennisPlayer2.FullNameForMatchWinner + " winning over " + tennisPlayer1.FullNameForMatchWinner + ". \nThe Score ended: " + setsWon2 + " - " + setsWon1 + ".\nThe total duration for the match is: "/* + "0" + matchTimeHour + ":" + matchTimeMin + ":" + matchTimeSec + ".\n" */ + matchTime + "The match was played from " + datetime + " " + timeFrom + " to " + dateTo + " " + timeTo + ".";
                 }
                 else
                 {
