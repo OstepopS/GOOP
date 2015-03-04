@@ -6,13 +6,13 @@ using System.Threading.Tasks;
 
 namespace _Tennis
 {
-    class Person
+    class Person :TennisMatch
     {
         protected string firstName;
         protected string middleName;
         protected string lastName;
         protected string nationality;
-        protected string gender;
+        //protected string gender;
         protected DateTime dateOfBirth;
         protected List<string> firstNameList = new List<string> { "Gary", "John", "Dean", "Wayne", "Juan", "Fritz", "Ronald", "Mikhail", "Earle", "Patrick", "William", "Larry", "Paul", "Randall", "Jeffrey", "Randy", "Robert", "Charles", "Robert" };
         protected List<string> middleNameList = new List<string> { "Wayne", "Vallejo", "John", "Steven", "Lee", "Ray", "Joseph", "", "", "", "", "", "", "" };
@@ -29,12 +29,17 @@ namespace _Tennis
 
         public Person()
         {
-            firstName = firstNameList[random.Next(0, firstNameList.Count)];
-            middleName = middleNameList[random.Next(0, middleNameList.Count)];
-            lastName = lastNameList[random.Next(0, lastNameList.Count)];
-            nationality = nationalityList[random.Next(0, nationalityList.Count)];
-            gender = genderList[random.Next(0, genderList.Count)];
-            dateOfBirth = dateOfBirthList[random.Next(0, dateOfBirthList.Count)];
+            
+            Console.WriteLine("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx" + gender);
+            if (gender == "Male")
+            {
+                firstName = firstNameList[random.Next(0, firstNameList.Count)];
+                middleName = middleNameList[random.Next(0, middleNameList.Count)];
+                lastName = lastNameList[random.Next(0, lastNameList.Count)];
+                nationality = nationalityList[random.Next(0, nationalityList.Count)];
+                gender = genderList[random.Next(0, genderList.Count)];
+                dateOfBirth = dateOfBirthList[random.Next(0, dateOfBirthList.Count)];
+            }
         }
         private string name(string firstName, string middleName, string lastName)
         {
@@ -72,9 +77,9 @@ namespace _Tennis
             }
             return fullName;
         }
-        public override string ToString()
+        /*public override string ToString()
         {
             return name(firstName, middleName, lastName) + "Date of Birth: " + dateOfBirth + "\n" + "Nationality: " + nationality + "\n" + "Gender: " + gender + "\n";
-        }
+        }*/
     }
 }

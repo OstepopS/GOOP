@@ -8,9 +8,10 @@ namespace _Tennis
 {
     class Program
     {
-
+        public string gender1;
         public static void Main(string[] args)
         {
+            
             SuperTennisMatch();
         }
 
@@ -18,10 +19,12 @@ namespace _Tennis
         {
             DateTime tournamentdate = new DateTime(1999, 12, 12);
             string tournamentName = "Wimbledon";
-            string gameFormat = "Single";
+            string gameFormat = "Mix";
+            string gender1 = "Male";
             //Referee referee = new Referee()
-            SuperTennisMatch Wimbledon = new SuperTennisMatch(tournamentName, tournamentdate, gameFormat, 2);
+            SuperTennisMatch Wimbledon = new SuperTennisMatch(tournamentName, tournamentdate, gameFormat, gender1, 16);
             Wimbledon.GameSetAndMatch();
+            
         }
     }
 }

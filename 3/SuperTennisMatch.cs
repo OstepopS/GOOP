@@ -14,17 +14,20 @@ namespace _Tennis
         protected DateTime datetime;
         protected string tournamentName;
         protected string gameFormat;
+        public string gender { get; set; }
+
         protected int numberOfPlayers;
         public SuperTennisMatch()
         {
 
         }
-        public SuperTennisMatch(string tournamentname, DateTime datetime, string gameFormat, int numberOfPlayers)
+        public SuperTennisMatch(string tournamentname, DateTime datetime, string gameFormat, string gender, int numberOfPlayers)
         {
             this.datetime = datetime;
             this.tournamentName = tournamentname;
             this.gameFormat = gameFormat;
             this.numberOfPlayers = numberOfPlayers;
+            this.gender = gender;
 
             for (int i = 0; i < numberOfPlayers; i++)
             {
@@ -43,13 +46,14 @@ namespace _Tennis
             {
                 Console.WriteLine("The tennis tournament can not be played with that amount of people");
             }
-            if(IsPowerOfTwo(numberOfPlayers) == true)
+            if (IsPowerOfTwo(numberOfPlayers) == true)
             {
-            Tournament tournament = new Tournament(tennisPlayer, tournamentName, stadion);
-            tournament.Start();
+                Tournament tournament = new Tournament(tennisPlayer, tournamentName, gameFormat, stadion);
+                Console.WriteLine("df" + gameFormat);
+                tournament.Start();
             }
         }
-       
-        }
+
     }
+}
 
