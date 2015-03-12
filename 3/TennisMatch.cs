@@ -139,7 +139,7 @@ namespace _Tennis
                     playerPoints2 = 0;
                     MatchTime();
 
-                    Console.WriteLine("Set " + setsWon1 + " took: " + randomTimeMin + ":" + randomTimeSec + ".");
+                    Console.WriteLine("Set " + setsWon1 + " took: " + matchTime.TimeOfDay);
                 }
                 if (playerPoints2 >= playerPoints1 - 2 && playerPoints2 >= 6)
                 {
@@ -148,7 +148,7 @@ namespace _Tennis
                     playerPoints2 = 0;
                     MatchTime();
 
-                    Console.WriteLine("Set " + setsWon2 + " took: " + randomTimeMin + ":" + randomTimeSec + ".");
+                    Console.WriteLine("Set " + setsWon2 + " took: " + matchTime.TimeOfDay);
                 }
 
 
@@ -181,7 +181,7 @@ namespace _Tennis
 
 
                 GamesAndSets();
-
+                    
                 if ((setsWon1 >= setsWon2 + 2) && (setsWon1 >= numberOfSets))
                 {
                     Winner1 = 1;
@@ -213,10 +213,10 @@ namespace _Tennis
                 matchTimeHour = matchTimeHour + 1;
                 matchTimeMin = matchTimeMin - 60;
             }
-            matchTime.AddHours(matchTimeHour);
-            matchTime.AddMinutes(matchTimeMin);
-            matchTime.AddSeconds(matchTimeSec);
-           Console.WriteLine("gg" + matchTime);
+           matchTime = matchTime.AddHours(matchTimeHour);
+           matchTime = matchTime.AddMinutes(matchTimeMin);
+           matchTime = matchTime.AddSeconds(matchTimeSec);
+           //Console.WriteLine("gg " + matchTime.TimeOfDay);
 
         }
 

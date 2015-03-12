@@ -192,7 +192,7 @@ namespace _Tennis
             } while (tennisPlayer.Count > 0);
             if (gameFormat == "Single")
             {
-                Console.WriteLine("the winner is: " + winningTennisPlayer.Count +  winningTennisPlayer[1].FullNameForMatchWinner);
+                Console.WriteLine("the winner is: "  +  winningTennisPlayer[1].FullNameForMatchWinner);
             }
             if (gameFormat == "Double")
             {
