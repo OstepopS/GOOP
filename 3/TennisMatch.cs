@@ -30,7 +30,7 @@ namespace _Tennis
         public int Winner2 { get; set; }
         private int gameWon1;
         private int gameWon2;
-        private int numberOfSets;
+
         private string dateFrom;
         private string dateTo;
         private string timeFrom;
@@ -60,18 +60,11 @@ namespace _Tennis
             this.matchTime1 = matchTime;
 
         }
-
         public TennisMatch(Tennisplayer tennisplayer1, Tennisplayer tennisplayer2)
         {
             tennisPlayer1 = tennisplayer1;
             tennisPlayer2 = tennisplayer2;
         }
-        /*public TennisMatch(Tennisplayer tennisplayer1, Tennisplayer tennisplayer2, DateTime datetime)
-        {
-            tennisPlayer1 = tennisplayer1;
-            tennisPlayer2 = tennisplayer2;
-            this.datetime = datetime;
-        }*/
         public TennisMatch(Tennisplayer tennisplayer1, Tennisplayer tennisplayer2, DateTime datetime, Referee referee)
         {
             tennisPlayer1 = tennisplayer1;
@@ -83,23 +76,24 @@ namespace _Tennis
         public override void Start()
         {
             Console.WriteLine("Referee er: " + referee);
+            int numberOfSets = 0;
             if (tennisPlayer1.Gender == tennisPlayer2.Gender && tennisPlayer1.Gender == "Male")
             {
                 Console.WriteLine("All players are male\n");
-                numberOfSets = 5;
-
-                Match();
+                numberOfSets = 5; 
             }
             if (tennisPlayer1.Gender == tennisPlayer2.Gender && tennisPlayer1.Gender == "Female")
             {
                 Console.WriteLine("All players are female\n");
-                numberOfSets = 3;
-                Match();
+                numberOfSets = 3;                
             }
+
+            Match(numberOfSets);
+            
         }
         private void PointToPlayer()
         {
-
+            
             randomNumber = random.Next(1, 3);
             if (randomNumber == 1)
             {
@@ -111,10 +105,12 @@ namespace _Tennis
             }
             //Console.WriteLine("The Score is " + playerPoints1 + " - " + playerPoints2);
         }
-        private void Match()
+        //public Tennisplayer Match(Tennisplayer tennisplayer1, Tennisplayer tennisplayer2, int sets){}
+
+        private void Match(int numberOfSets)
         {
             GamesAndSets();
-            Sets();
+            Sets(numberOfSets);
         }
         private void GamesAndSets()
         {
@@ -139,7 +135,7 @@ namespace _Tennis
                     playerPoints2 = 0;
                     MatchTime();
 
-                    Console.WriteLine("Set " + setsWon1 + " took: " + matchTime.TimeOfDay);
+                    //Console.WriteLine("Set " + setsWon1 + " took: " + matchTime.TimeOfDay);
                 }
                 if (playerPoints2 >= playerPoints1 - 2 && playerPoints2 >= 6)
                 {
@@ -148,7 +144,7 @@ namespace _Tennis
                     playerPoints2 = 0;
                     MatchTime();
 
-                    Console.WriteLine("Set " + setsWon2 + " took: " + matchTime.TimeOfDay);
+                    //Console.WriteLine("Set " + setsWon2 + " took: " + matchTime.TimeOfDay);
                 }
 
 
@@ -174,7 +170,7 @@ namespace _Tennis
             }
 
         }
-        private void Sets()
+        private void Sets(int numberOfSets)
         {
             do
             {
@@ -219,43 +215,10 @@ namespace _Tennis
            //Console.WriteLine("gg " + matchTime.TimeOfDay);
 
         }
-
         public string MatchTimeTotal
         {
             get { return "" + matchTimeHour + ":" + matchTimeMin + ":" + matchTimeSec; }
-        }
-        /* public Tennisplayer TennisPlayerWinner
-         {
-             get
-             {
-                 if (singleOrDouble == 2)
-                 {
-                     if (setsWon1 > setsWon2)
-                     {
-
-                         return tennisPlayer1;
-                     }
-
-                     else
-                     {
-                         return tennisPlayer2;
-                     }
-                 }
-                 else
-                 {
-                     if (setsWon1 > setsWon2)
-                     {
-
-                         return tennisPlayer1 + tennisPlayer3;
-                     }
-
-                     else
-                     {
-                         return tennisPlayer2 + tennisPlayer4;
-                     }
-                 }
-             }
-         }*/
+        }        
         public string ToString()
         {
             Console.WriteLine("" + singleOrDouble);

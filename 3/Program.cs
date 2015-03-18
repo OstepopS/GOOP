@@ -8,7 +8,7 @@ namespace _Tennis
 {
     class Program
     {
-        public string gender1;
+        
         public static void Main(string[] args)
         {
 
@@ -21,8 +21,9 @@ namespace _Tennis
             string tournamentName = "Wimbledon";
             string gameFormat = "Single";
             string gender1 = "Male";
+            int players = 8;
             //Referee referee = new Referee()
-            SuperTennisMatch Wimbledon = new SuperTennisMatch(tournamentName, tournamentdate, gameFormat, gender1, 8);
+            SuperTennisMatch Wimbledon = new SuperTennisMatch(tournamentName, tournamentdate, gameFormat, gender1, players);
             Wimbledon.GameSetAndMatch();
 
         }

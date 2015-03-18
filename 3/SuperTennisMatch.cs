@@ -31,7 +31,7 @@ namespace _Tennis
 
             for (int i = 0; i < numberOfPlayers; i++)
             {
-                //en Tennisplayer bliver genereraet
+                // Tennisplayers bliver genereret
                 var tennismand = new Tennisplayer(this.gender);
                 tennisPlayer.Add(tennismand);
             }
